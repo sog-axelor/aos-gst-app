@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  http://axelor.com/xml/ns/object-views/object-views_5.4.xsd">
+
+  <grid model="com.axelor.apps.account.db.Invoice" title="Invoice" name="invoice-grid"
+    extension="true" id="gst-invoice-grid">
+    <extend target="//panel-related[@name='invoiceLineTaxListPanel']">
+      <insert position="before">
+        <field name="priority"/>
+        <field name="netIgst"/>
+        <field name="netCgst"/>
+        <field name="netSgst"/>
+      </insert>
+    </extend>
+  </grid>
+
+  <form model="com.axelor.apps.account.db.Invoice" title="Invoice" name="invoice-form"
+    extension="true" id="gst-invoice-form">
+    <extend target="//panel-related[@name='invoiceLineTaxListPanel']">
+      <insert position="before">
+        <field name="priority"/>
+        <field name="netIgst"/>
+        <field name="netCgst"/>
+        <field name="netSgst"/>
+      </insert>
+    </extend>
+
+    <extend target="//field[@name='priority']">
+      <attribute name="onChange" value="action-test-gst"/>
+    </extend>
+
+  </form>
+
+  <action-method name="action-test-gst">
+    <call class="com.axelor.apps.gst.controller.GstController" method="test"/>
+  </action-method>
+
+</object-views>

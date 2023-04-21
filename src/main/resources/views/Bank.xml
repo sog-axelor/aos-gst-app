@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  http://axelor.com/xml/ns/object-views/object-views_5.4.xsd">
+
+
+
+  <grid model="com.axelor.apps.base.db.Bank" title="Bank Account" name="bank-grid"
+    extension="true" id="gts-bank-grid">
+    <extend target="//field[@name='bankName']">
+      <insert position="after">
+        <field name="IFSC" title="IFSC"/>
+      </insert>
+    </extend>
+  </grid>
+
+  <form model="com.axelor.apps.base.db.Bank" title="Bank Account" name="bank-form"
+    id="gst-bank-form" extension="true">
+    <extend target="//field[@name='bankName']">
+      <insert position="after">
+        <field name="IFSC" title="IFSC"/>
+        <field name="bankAccTypeSelect"/>
+      </insert>
+    </extend>
+
+  </form>
+
+
+</object-views>

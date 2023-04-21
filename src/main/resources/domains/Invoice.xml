@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<domain-models xmlns="http://axelor.com/xml/ns/domain-models"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/domain-models http://axelor.com/xml/ns/domain-models/domain-models_5.4.xsd">
+
+  <module name="account" package="com.axelor.apps.account.db"/>
+  <entity name="Invoice" lang="java" cacheable="true">
+    <integer name="priority" title="Priority"/>
+    <decimal name="netIgst" precision="8" scale="2" readonly="true" title="Net Igst"/>
+    <decimal name="netCgst" precision="8" scale="2" readonly="true" title="Net Cgst"/>
+    <decimal name="netSgst" precision="8" scale="2" readonly="true" title="Net Sgst"/>
+  </entity>
+
+</domain-models>
+
+

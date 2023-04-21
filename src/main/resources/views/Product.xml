@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  http://axelor.com/xml/ns/object-views/object-views_5.4.xsd">
+
+
+  <grid model="com.axelor.apps.base.db.Product" title="Product" name="product-grid"
+    extension="true" id="gst-product-grid">
+    <extend target="//field[@name='productTypeSelect']">
+      <insert position="after">
+        <field name="hsbn"/>
+        <field name="gstRate"/>
+      </insert>
+    </extend>
+  </grid>
+
+  <form model="com.axelor.apps.base.db.Product" title="Product" name="product-form"
+    extension="true" id="gst-product-form">
+    <extend
+      target="//panel[@name='productTypologyPanel']/field[@name='procurementMethodSelect']">
+      <insert position="after">
+        <field name="hsbn"/>
+      </insert>
+    </extend>
+    <extend target="//panel[@name='subSalePanel']/field[@name='salePrice']">
+      <insert position="after">
+        <field name="gstRate"/>
+      </insert>
+    </extend>
+
+    <extend target="//field[@name='productCategory']">
+      <attribute name="onChange" value="action-change-category"/>
+    </extend>
+
+  </form>
+
+  <action-record name="action-change-category" model="com.axelor.apps.base.db.Product">
+    <field name="gstRate" expr="eval: productCategory.gstRate"/>
+  </action-record>
+
+
+</object-views>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

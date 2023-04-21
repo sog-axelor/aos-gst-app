@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  http://axelor.com/xml/ns/object-views/object-views_5.4.xsd">
+
+
+  <selection name="bankAccount.type.select">
+    <option value="1">Current</option>
+    <option value="2">Savings</option>
+  </selection>
+
+  <selection name="sequence.gst.code.select" id="gst.sequence.gst.code.select">
+    <option value="partyRef">Party Reference</option>
+    <option value="invoiceRef">Invoice Reference</option>
+  </selection>
+
+
+
+</object-views>

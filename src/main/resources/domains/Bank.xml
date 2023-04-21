@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<domain-models xmlns="http://axelor.com/xml/ns/domain-models"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/domain-models http://axelor.com/xml/ns/domain-models/domain-models_5.4.xsd">
+  <module package="com.axelor.apps.base.db" name="base"/>
+
+  <entity name="Bank" lang="java">
+    <string name="IFSC" title="IFSC"/>
+    <string name="bankAccTypeSelect" title="Bank Account Type"
+      selection="bankAccount.type.select" default="2"/>
+  </entity>
+
+  <extra-code><![CDATA[
+      //BANK  TYPE SELECT
+      public static final int BANK__TYPE_CURRENT = 1;
+      public static final int BANK_TYPE_SAVING = 2;
+    ]]></extra-code>
+
+</domain-models>

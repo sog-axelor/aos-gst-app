@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  http://axelor.com/xml/ns/object-views/object-views_5.4.xsd">
+
+
+  <form model="com.axelor.apps.account.db.InvoiceLine" title="InvoiceLine"
+    name="invoice-line-form" extension="true" id="gst-invoice-line-form">
+    <extend target="//field[@name='taxLine']">
+      <insert position="before">
+        <field name="hsbn"/>
+        <field name="igst" readonly="true"/>
+        <field name="sgst" readonly="true"/>
+        <field name="cgst" readonly="true"/>
+        <field name="gstRate" readonly="true"/>
+      </insert>
+    </extend>
+
+    <extend target="//field[@name='product']">
+      <attribute name="onChange"
+        value="action-group-account-invoice-line-product-onchange,action-change-hsbn"/>
+    </extend>
+
+  </form>
+
+  <action-record name="action-change-hsbn"
+    model="com.axelor.apps.account.db.InvoiceLine">
+    <field name="hsbn" expr="eval: product.hsbn "/>
+    <field name="gstRate" expr="eval: product.gstRate"/>
+  </action-record>
+
+</object-views>
+
+
+
+
+
+
+
+
