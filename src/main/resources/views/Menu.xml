@@ -5,6 +5,14 @@
 
   <menuitem name="gst-root" title="GST" icon="fa-bullhorn" icon-background="#004aad"
     order="-64" if="__config__.app.isApp('gst')"/>
+    
+   
+		
+	<menuitem name="dashboard-welcome-root" title="DashBoard" parent="gst-root" action="action.gst.root.dashboard"/>
+	<action-view name="action.gst.root.dashboard" title="DashBoard">
+		<view type="dashboard" name="gst.dashboard"/>
+	</action-view>
+		
 
   <menuitem name="gst-root-company" parent="gst-root" title="Company"
     action="action.gst.view.company"/>
