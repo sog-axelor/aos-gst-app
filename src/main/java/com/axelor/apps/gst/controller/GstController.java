@@ -11,37 +11,30 @@ import javax.inject.Inject;
 
 public class GstController {
 
-	@Inject
-	GstImplmentation gi;
+  @Inject GstImplmentation gi;
 
-	public void test(ActionRequest request, ActionResponse response) {
-		Invoice invoice = request.getContext().asType(Invoice.class);
-		System.err.println(invoice);
-	}
+  public void test(ActionRequest request, ActionResponse response) {
+    Invoice invoice = request.getContext().asType(Invoice.class);
+    System.err.println(invoice);
+  }
 
-	public void invoiceGst(ActionRequest request, ActionResponse response) {
-		Invoice invoice = request.getContext().asType(Invoice.class);
-		invoice = gi.calculateGst(invoice);
-		response.setValue("netIgst", invoice.getNetIgst());
-		response.setValue("netCgst", invoice.getNetCgst());
-		response.setValue("netSgst", invoice.getNetSgst());
-	}
-	
-	public void invoiceLineGst(ActionRequest request, ActionResponse response) {
-		Invoice invoice = request.getContext().getParent().asType(Invoice.class);
-		InvoiceLine invoiceLine = request.getContext().asType(InvoiceLine.class);
-		
-		Company company = invoice.getCompany();
-		Address address = invoice.getAddress();
-		
-		invoiceLine = gi.calculateInvoiceLine(invoiceLine, company, address);
-		
-		response.setValue("igst", invoiceLine.getIgst());
-		response.setValue("sgst", invoiceLine.getSgst());
-		response.setValue("cgst", invoiceLine.getCgst());
-		response.setValue("grossAmount", invoiceLine.getInTaxTotal());
+  public void invoiceGst(ActionRequest request, ActionResponse response) {
+    Invoice invoice = request.getContext().asType(Invoice.class);
+    invoice = gi.calculateGst(invoice);
+    response.setValues(invoice);
+  }
 
-		
-	}
+  public void invoiceLineGst(ActionRequest request, ActionResponse response) {
+    Invoice invoice = request.getContext().getParent().asType(Invoice.class);
+    InvoiceLine invoiceLine = request.getContext().asType(InvoiceLine.class);
 
+    Company company = invoice.getCompany();
+    Address address = invoice.getAddress();
+
+    invoiceLine = gi.calculateInvoiceLine(invoiceLine, company, address);
+    response.setValue("igst", invoiceLine.getIgst());
+    response.setValue("sgst", invoiceLine.getSgst());
+    response.setValue("cgst", invoiceLine.getCgst());
+    response.setValue("grossAmount", invoiceLine.getInTaxTotal());
+  }
 }

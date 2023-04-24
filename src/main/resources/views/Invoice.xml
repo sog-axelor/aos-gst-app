@@ -27,14 +27,19 @@
       </insert>
     </extend>
 
-    <extend target="//field[@name='priority']">
-      <attribute name="onChange" value="action-test-gst"/>
+    <extend target="//panel-related[@name='invoiceLineListPanel']">
+      <attribute name="onChange" value="action-group-invoice-onChange"/>
     </extend>
 
   </form>
 
-  <action-method name="action-test-gst">
-    <call class="com.axelor.apps.gst.controller.GstController" method="test"/>
+  <action-method name="action-gst-invoice-calculations">
+    <call class="com.axelor.apps.gst.controller.GstController" method="invoiceGst"/>
   </action-method>
+
+  <action-group name="action-group-invoice-onChange">
+    <action name="action-invoice-group-invoice-line-list-on-change"/>
+    <action name="action-gst-invoice-calculations"/>
+  </action-group>
 
 </object-views>

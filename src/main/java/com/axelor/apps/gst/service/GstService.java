@@ -6,6 +6,8 @@ import com.axelor.apps.base.db.Address;
 import com.axelor.apps.base.db.Company;
 
 public interface GstService {
-	public Invoice calculateGst(Invoice invoice);
-	public InvoiceLine calculateInvoiceLine(InvoiceLine invoiceLine,Company company, Address address);
+  public Invoice calculateGst(Invoice invoice);
+
+  public InvoiceLine calculateInvoiceLine(
+      InvoiceLine invoiceLine, Company company, Address address);
 }
