@@ -38,7 +38,7 @@
 	</action-view>
 
 
-	<!-- Product Menu  -->
+	<!-- Product Menu -->
 
 	<menuitem title="Product" name="product-config" order="-4"
 		parent="gst-root" icon="fa-cc-discover" />
@@ -63,14 +63,42 @@
 
 
 
-	<!-- Invoice Menu  -->
+	<!-- Invoice Menu -->
 
 	<menuitem title="Invoice" name="invoice-config" order="-3"
 		parent="gst-root" icon="fa-desktop" />
 
-	<menuitem name="gst-root-invoice" parent="invoice-config"
-		title="Invoice" action="action.gst.view.invoice" />
-	<action-view name="action.gst.view.invoice" title="Invoice"
+	<menuitem name="gst-root-invoice-draft"
+		parent="invoice-config" title="Draft Invoiced" action="action.gst.view.invoice.draft" order="-40"/>
+	<action-view name="action.gst.view.invoice.draft" title="Invoice"
+		model="com.axelor.apps.account.db.Invoice">
+		<view type="grid" name="invoice-grid" />
+		<view type="form" name="invoice-form" />
+		<view-param name="search-filters"
+			value="customer-invoices-filters" />
+		<domain>self.operationTypeSelect = 1</domain>
+		<context name="_operationTypeSelect" expr="eval:1" />
+		<context name="todayDate" expr="eval:__config__.date" />
+	</action-view>
+	
+		<menuitem name="gst-root-invoice-validated"
+		parent="invoice-config" title="Validated Invoiced" action="action.gst.view.invoice.validated" order="-30"/>
+	<action-view name="action.gst.view.invoice.validated" title="Invoice"
+		model="com.axelor.apps.account.db.Invoice">
+		<view type="grid" name="invoice-grid" />
+		<view type="form" name="invoice-form" />
+		<view-param name="search-filters"
+			value="customer-invoices-filters" />
+		<domain>self.operationTypeSelect = 2</domain>
+		<context name="_operationTypeSelect" expr="eval:2" />
+		<context name="todayDate" expr="eval:__config__.date" />
+	</action-view>
+	
+
+	<menuitem name="gst-root-invoice-ventilated"
+		parent="invoice-config" title="Vantilated Invoiced"
+		action="action.gst.view.invoice.ventilated"  order="-20"/>
+	<action-view name="action.gst.view.invoice.ventilated" title="Invoice"
 		model="com.axelor.apps.account.db.Invoice">
 		<view type="grid" name="invoice-grid" />
 		<view type="form" name="invoice-form" />
@@ -80,9 +108,37 @@
 		<context name="_operationTypeSelect" expr="eval:3" />
 		<context name="todayDate" expr="eval:__config__.date" />
 	</action-view>
+	
+	<menuitem name="gst-root-invoice-cancelled"
+		parent="invoice-config" title="Cancel Invoiced"
+		action="action.gst.view.invoice.canceled"  order="-10"/>
+	<action-view name="action.gst.view.invoice.canceled" title="Invoice"
+		model="com.axelor.apps.account.db.Invoice">
+		<view type="grid" name="invoice-grid" />
+		<view type="form" name="invoice-form" />
+		<view-param name="search-filters"
+			value="customer-invoices-filters" />
+		<domain>self.operationTypeSelect = 4</domain>
+		<context name="_operationTypeSelect" expr="eval:4" />
+		<context name="todayDate" expr="eval:__config__.date" />
+	</action-view>
+	
+	<menuitem name="gst-root-invoice"
+		parent="invoice-config" title="All Invoices"
+		action="action.gst.view.invoice"  order="-9"/>
+	<action-view name="action.gst.view.invoice" title="Invoice"
+		model="com.axelor.apps.account.db.Invoice">
+		<view type="grid" name="invoice-grid" />
+		<view type="form" name="invoice-form" />
+		<view-param name="search-filters"
+			value="customer-invoices-filters" />
+		<context name="todayDate" expr="eval:__config__.date" />
+	</action-view>
 
 
-	<!--COmpany Menu  -->
+
+
+	<!--COmpany Menu -->
 	<menuitem name="gst-party-config" title="Company"
 		parent="gst-root" icon="fa-book" order="-2" />
 
@@ -101,8 +157,8 @@
 		<view type="grid" name="bank-grid" />
 		<view type="form" name="bank-form" />
 	</action-view>
-	
-	<!-- 	Dashboard -->
+
+	<!-- Dashboard -->
 
 	<menuitem title="Dashboard" name="dashboard-root" order="-2"
 		parent="gst-root" icon="fa-bar-chart" />
