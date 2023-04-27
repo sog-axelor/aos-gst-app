@@ -1,119 +1,137 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <object-views xmlns="http://axelor.com/xml/ns/object-views"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/object-views
   http://axelor.com/xml/ns/object-views/object-views_5.4.xsd">
 
-	<dashboard name="gst.dashboard" title="Welcome!">
-		<dashlet colSpan="12" action="action-invoice-valid-gst-paid" />
-		<dashlet action="chart:chart-customer-per-state" />
-		<dashlet action="chart:chart-unpaid-invoice-per-customer" />
-		<dashlet action="chart:chart-paid-invoice-per-customer" />
-	</dashboard>
+  <dashboard name="gst.dashboard" title="Welcome!">
+    <dashlet colSpan="12" action="action-invoice-valid-gst-paid"/>
+    <dashlet action="chart:chart-customer-per-state"/>
+    <dashlet action="chart:chart-unpaid-invoice-per-customer"/>
+    <dashlet action="chart:chart-paid-invoice-per-customer"/>
+    <dashlet action="chart:chart-invoice-per-status-invoice"/>
+  </dashboard>
 
 
-	<action-view name="action-invoice-valid-gst-paid"
-		title="Validated and Not Paid"
-		model="com.axelor.apps.account.db.Invoice">
-		<view type="grid" />
-		<domain>self.statusSelect = 2</domain>
-	</action-view>
+  <action-view name="action-invoice-valid-gst-paid" title="Validated and Not Paid"
+    model="com.axelor.apps.account.db.Invoice">
+    <view type="grid"/>
+    <domain>self.statusSelect = 2</domain>
+  </action-view>
 
 
-	<chart name="chart-customer-per-state" title="Customer per state">
-		<dataset type="sql"> 
+  <chart name="chart-customer-per-state" title="Customer per state">
+    <dataset type="sql">
 			<![CDATA[
-				SELECT 
-					state.name as state_name, 
+				SELECT
+					state.name as state_name,
 					count(distinct partner_addr.id) as partner_count
-				FROM 
+				FROM
 					gst_state state
-				LEFT JOIN 
+				LEFT JOIN
 					base_address address on address.state = state.id
 				LEFT JOIN(
-					SELECT 
-						partner.id, 
-						pa.address as addr 
+					SELECT
+						partner.id,
+						pa.address as addr
 					FROM
-						base_partner partner 
-					LEFT JOIN 
+						base_partner partner
+					LEFT JOIN
 						base_partner_address pa on partner.id = pa.partner
-					WHERE 
+					WHERE
 						partner.is_customer = true
-				) 
+				)
 					partner_addr on address.id = partner_addr.addr
-				GROUP BY 
+				GROUP BY
 					state.name
 			]]>
-		</dataset>
-		<category key="state_name" type="text" />
-		<series key="partner_count" groupBy="state_name" type="pie" />
-		<config name="percent" value="true" />
-	</chart>
-	
-	<chart name="chart-unpaid-invoice-per-customer" title="paid invoices per customer" onInit="action.unpaid.chart.set.date">
-		<search-fields>
-			<field type="date" name="fromDate" title="From Date" widget="required" x-required="true" />
-			<field type="date" name="toDate" title="To Date" widget="required" x-required="true" />
-		</search-fields>
-		<dataset type="sql"> 
-			<![CDATA[
-				SELECT 
-					partner.name as p_name, 
-					count(inv.id) as invoice_count
-				FROM 
-					base_partner partner
-				LEFT JOIN(
-					SELECT 
-						invoice.id as id ,invoice.partner as p
-					FROM 
-						account_invoice invoice
-					WHERE 
-						invoice.status_select NOT IN (3,4)
-						AND 
-						invoice.invoice_date between DATE(:fromDate) AND DATE(:toDate)
-				) inv on inv.p = partner.id
-				WHERE
-					partner.is_customer = true 
-				GROUP BY 
-					partner.name
-			]]>
-		</dataset>
-		<category key="p_name" type="text" />
-		<series key="invoice_count" groupBy="p_name" type="bar" />
-	</chart>
+    </dataset>
+    <category key="state_name" type="text"/>
+    <series key="partner_count" groupBy="state_name" type="pie"/>
+    <config name="percent" value="true"/>
+  </chart>
 
-<chart name="chart-paid-invoice-per-customer" title="Unpaid invoices per customer " onInit="action.unpaid.chart.set.date">
-		<search-fields>
-			<field type="date" name="fromDate" title="From Date" widget="required" x-required="true" />
-			<field type="date" name="toDate" title="To Date" widget="required" x-required="true" />
-		</search-fields>
-		<dataset type="sql"> 
+  <chart name="chart-unpaid-invoice-per-customer" title="paid invoices per customer"
+    onInit="action.unpaid.chart.set.date">
+    <search-fields>
+      <field type="date" name="fromDate" title="From Date" widget="required" x-required="true"/>
+      <field type="date" name="toDate" title="To Date" widget="required" x-required="true"/>
+    </search-fields>
+    <dataset type="sql">
 			<![CDATA[
-				SELECT 
-					partner.name as p_name, 
+				SELECT
+					partner.name as p_name,
 					count(inv.id) as invoice_count
-				FROM 
+				FROM
 					base_partner partner
 				LEFT JOIN(
-					SELECT 
+					SELECT
 						invoice.id as id ,invoice.partner as p
-					FROM 
+					FROM
 						account_invoice invoice
-					WHERE 
-						invoice.status_select  IN (3,4)
-						AND 
+					WHERE
+						invoice.status_select NOT IN (3,4)
+						AND
 						invoice.invoice_date between DATE(:fromDate) AND DATE(:toDate)
 				) inv on inv.p = partner.id
 				WHERE
-					partner.is_customer = true 
-				GROUP BY 
+					partner.is_customer = true
+				GROUP BY
 					partner.name
 			]]>
-		</dataset>
-		<category key="p_name" type="text" />
-		<series key="invoice_count" groupBy="p_name" type="bar" />
-	</chart>
+    </dataset>
+    <category key="p_name" type="text"/>
+    <series key="invoice_count" groupBy="p_name" type="bar"/>
+  </chart>
+
+  <chart name="chart-paid-invoice-per-customer" title="Unpaid invoices per customer "
+    onInit="action.unpaid.chart.set.date">
+    <search-fields>
+      <field type="date" name="fromDate" title="From Date" widget="required" x-required="true"/>
+      <field type="date" name="toDate" title="To Date" widget="required" x-required="true"/>
+    </search-fields>
+    <dataset type="sql">
+			<![CDATA[
+				SELECT
+					partner.name as p_name,
+					count(inv.id) as invoice_count
+				FROM
+					base_partner partner
+				LEFT JOIN(
+					SELECT
+						invoice.id as id ,invoice.partner as p
+					FROM
+						account_invoice invoice
+					WHERE
+						invoice.status_select  IN (3,4)
+						AND
+						invoice.invoice_date between DATE(:fromDate) AND DATE(:toDate)
+				) inv on inv.p = partner.id
+				WHERE
+					partner.is_customer = true
+				GROUP BY
+					partner.name
+			]]>
+    </dataset>
+    <category key="p_name" type="text"/>
+    <series key="invoice_count" groupBy="p_name" type="bar"/>
+  </chart>
+
+  <chart name="chart-invoice-per-status-invoice" title="Invoice per status">
+    <dataset type="jpql">
+			<![CDATA[
+				SELECT
+					invoice.statusSelect as status,
+					count(invoice.id) as invoices
+				FROM
+					Invoice invoice
+				GROUP BY
+					invoice.statusSelect
+			]]>
+    </dataset>
+    <category key="status" type="text"/>
+    <series key="invoices" groupBy="status" type="line"/>
+  </chart>
 
 
 

@@ -9,11 +9,11 @@
     name="invoice-line-form" extension="true" id="gst-invoice-line-form">
     <extend target="//field[@name='taxLine']">
       <insert position="before">
-        <field name="hsbn"/>
-        <field name="igst" readonly="true"/>
-        <field name="sgst" readonly="true"/>
-        <field name="cgst" readonly="true"/>
-        <field name="gstRate" readonly="true"/>
+        <field name="hsbn" if="__config__.app.isApp('gst')"/>
+        <field name="igst" readonly="true" if="__config__.app.isApp('gst')"/>
+        <field name="sgst" readonly="true" if="__config__.app.isApp('gst')"/>
+        <field name="cgst" readonly="true" if="__config__.app.isApp('gst')"/>
+        <field name="gstRate" readonly="true" if="__config__.app.isApp('gst')"/>
       </insert>
     </extend>
 
@@ -49,16 +49,18 @@
     <call class="com.axelor.apps.gst.controller.GstController" method="invoiceLineGst"/>
   </action-method>
 
+
+
+
+
   <action-group name="action-group-invoice-line-product-onChange">
     <action name="action-group-account-invoice-line-product-onchange"/>
     <action name="action-change-hsbn"/>
-    <action name="action-gst-invoice-line-method"/>
   </action-group>
 
 
   <action-group name="action-group-invoice-line-product-qty-onChange">
     <action name="action-group-account-invoice-line-qty-onchange"/>
-    <action name="action-gst-invoice-line-method"/>
   </action-group>
 
 
@@ -67,8 +69,8 @@
     <action
       name="action-invoice-line-method-convert-tax,action-invoice-line-method-compute,action-invoice-line-method-compute-analytic-distribution,action-budget-validate-exceed-line-amount"/>
     <action name="action-change-hsbn"/>
-    <action name="action-gst-invoice-line-method"/>
   </action-group>
+
 
 
 

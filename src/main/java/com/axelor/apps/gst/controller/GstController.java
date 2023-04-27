@@ -2,6 +2,7 @@ package com.axelor.apps.gst.controller;
 
 import com.axelor.apps.account.db.Invoice;
 import com.axelor.apps.account.db.InvoiceLine;
+import com.axelor.apps.account.web.InvoiceLineController;
 import com.axelor.apps.base.db.Address;
 import com.axelor.apps.base.db.Company;
 import com.axelor.apps.gst.impl.GstImplmentation;
@@ -9,7 +10,7 @@ import com.axelor.rpc.ActionRequest;
 import com.axelor.rpc.ActionResponse;
 import javax.inject.Inject;
 
-public class GstController {
+public class GstController extends InvoiceLineController {
 
   @Inject GstImplmentation gi;
 

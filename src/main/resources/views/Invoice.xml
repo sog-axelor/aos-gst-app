@@ -8,10 +8,10 @@
     extension="true" id="gst-invoice-grid">
     <extend target="//panel-related[@name='invoiceLineTaxListPanel']">
       <insert position="before">
-        <field name="priority"/>
-        <field name="netIgst"/>
-        <field name="netCgst"/>
-        <field name="netSgst"/>
+        <field name="priority" if="__config__.app.isApp('gst')"/>
+        <field name="netIgst" if="__config__.app.isApp('gst')"/>
+        <field name="netCgst" if="__config__.app.isApp('gst')"/>
+        <field name="netSgst" if="__config__.app.isApp('gst')"/>
       </insert>
     </extend>
   </grid>
@@ -20,10 +20,10 @@
     extension="true" id="gst-invoice-form">
     <extend target="//panel-related[@name='invoiceLineTaxListPanel']">
       <insert position="before">
-        <field name="priority"/>
-        <field name="netIgst"/>
-        <field name="netCgst"/>
-        <field name="netSgst"/>
+        <field name="priority" if="__config__.app.isApp('gst')"/>
+        <field name="netIgst" if="__config__.app.isApp('gst')"/>
+        <field name="netCgst" if="__config__.app.isApp('gst')"/>
+        <field name="netSgst" if="__config__.app.isApp('gst')"/>
       </insert>
     </extend>
 
@@ -39,7 +39,6 @@
 
   <action-group name="action-group-invoice-onChange">
     <action name="action-invoice-group-invoice-line-list-on-change"/>
-    <action name="action-gst-invoice-calculations"/>
   </action-group>
 
 </object-views>

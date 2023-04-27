@@ -39,13 +39,10 @@ public class GstImplmentation implements GstService {
         invoice.getInvoiceLineList().stream()
             .map(InvoiceLine::getExTaxTotal)
             .reduce(BigDecimal.ZERO, BigDecimal::add);
-    
-  
 
     totalGst = totalTaxWithPrice.subtract(totalTaxWithOutPrice);
     totalAmount = totalTaxWithOutPrice.add(totalGst);
-    
-    
+
     invoice.setTaxTotal(totalGst);
     invoice.setInTaxTotal(totalAmount);
     invoice.setNetCgst(netCgst);

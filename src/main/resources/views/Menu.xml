@@ -1,173 +1,112 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <object-views xmlns="http://axelor.com/xml/ns/object-views"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://axelor.com/xml/ns/object-views http://axelor.com/xml/ns/object-views/object-views_5.4.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/object-views http://axelor.com/xml/ns/object-views/object-views_5.4.xsd">
 
-	<menuitem name="gst-root" title="GST" icon="fa-bullhorn"
-		icon-background="#004aad" order="-64" if="__config__.app.isApp('gst')" />
-
-
-	<!-- Party Menu -->
-	<menuitem name="gst-party-root" title="Party"
-		parent="gst-root" icon="fa-book" order="-6" />
-
-	<menuitem name="gst-root-partner" parent="gst-party-root"
-		title="Partner" action="action.gst.view.partner" order="-10" />
-	<action-view name="action.gst.view.partner" title="Partner"
-		model="com.axelor.apps.base.db.Partner">
-		<view type="grid" name="partner-grid" />
-		<view type="form" name="partner-form" />
-	</action-view>
-
-	<menuitem title="Configuration" name="party-config" order="-5"
-		parent="gst-party-root" icon="fa-cog" />
-
-	<menuitem name="gst-root-address" parent="party-config"
-		title="Address" action="action.gst.view.address" order="-20" />
-	<action-view name="action.gst.view.address" title="Address"
-		model="com.axelor.apps.base.db.Address">
-		<view type="form" name="address-form" />
-	</action-view>
-
-	<menuitem name="gst-root-state" parent="party-config"
-		title="State" action="action.gst.view.state" order="-10" />
-	<action-view name="action.gst.view.state" title="State"
-		model="com.axelor.apps.gst.db.State">
-		<view type="grid" name="state-grid" />
-		<view type="form" name="state-form" />
-	</action-view>
+  <menuitem name="gst-root" title="GST" icon="fa-bullhorn" icon-background="#f47d2e"
+    order="-64" if="__config__.app.isApp('gst')"/>
 
 
-	<!-- Product Menu -->
+  <!-- Party Menu -->
+  <menuitem name="gst-party-root" title="Party" parent="gst-root" icon="fa-book" order="-6"/>
 
-	<menuitem title="Product" name="product-config" order="-4"
-		parent="gst-root" icon="fa-cc-discover" />
+  <menuitem name="gst-root-partner" parent="gst-party-root" title="Partner"
+    action="action.gst.view.partner" order="-10"/>
+  <action-view name="action.gst.view.partner" title="Partner"
+    model="com.axelor.apps.base.db.Partner">
+    <view type="grid" name="partner-grid"/>
+    <view type="form" name="partner-form"/>
+  </action-view>
 
-	<menuitem name="gst-root-product" parent="product-config"
-		title="Product" action="action.gst.view.product" order="-20" />
-	<action-view name="action.gst.view.product" title="Product"
-		model="com.axelor.apps.base.db.Product">
-		<view type="grid" name="product-grid" />
-		<view type="form" name="product-form" />
-	</action-view>
+  <menuitem title="Configuration" name="party-config" order="-5" parent="gst-party-root"
+    icon="fa-cog"/>
 
-	<menuitem name="gst-root-product-category"
-		parent="product-config" title="Product Category"
-		action="action.gst.view.product.category" order="-10" />
-	<action-view name="action.gst.view.product.category"
-		title="Product Category"
-		model="com.axelor.apps.base.db.ProductCategory">
-		<view type="grid" name="product-category-grid" />
-		<view type="form" name="product-category-form" />
-	</action-view>
+  <menuitem name="gst-root-address" parent="party-config" title="Address"
+    action="action.gst.view.address" order="-20"/>
+  <action-view name="action.gst.view.address" title="Address"
+    model="com.axelor.apps.base.db.Address">
+    <view type="form" name="address-form"/>
+  </action-view>
+
+  <menuitem name="gst-root-state" parent="party-config" title="State"
+    action="action.gst.view.state" order="-10"/>
+  <action-view name="action.gst.view.state" title="State"
+    model="com.axelor.apps.gst.db.State">
+    <view type="grid" name="state-grid"/>
+    <view type="form" name="state-form"/>
+  </action-view>
+
+
+  <!-- Product Menu -->
+
+  <menuitem title="Product" name="product-config" order="-4" parent="gst-root"
+    icon="fa-cc-discover"/>
+
+  <menuitem name="gst-root-product" parent="product-config" title="Product"
+    action="action.gst.view.product" order="-20"/>
+  <action-view name="action.gst.view.product" title="Product"
+    model="com.axelor.apps.base.db.Product">
+    <view type="grid" name="product-grid"/>
+    <view type="form" name="product-form"/>
+  </action-view>
+
+  <menuitem name="gst-root-product-category" parent="product-config"
+    title="Product Category" action="action.gst.view.product.category" order="-10"/>
+  <action-view name="action.gst.view.product.category" title="Product Category"
+    model="com.axelor.apps.base.db.ProductCategory">
+    <view type="grid" name="product-category-grid"/>
+    <view type="form" name="product-category-form"/>
+  </action-view>
 
 
 
-	<!-- Invoice Menu -->
+  <!-- Invoice Menu -->
 
-	<menuitem title="Invoice" name="invoice-config" order="-3"
-		parent="gst-root" icon="fa-desktop" />
-
-	<menuitem name="gst-root-invoice-draft"
-		parent="invoice-config" title="Draft Invoiced" action="action.gst.view.invoice.draft" order="-40"/>
-	<action-view name="action.gst.view.invoice.draft" title="Invoice"
-		model="com.axelor.apps.account.db.Invoice">
-		<view type="grid" name="invoice-grid" />
-		<view type="form" name="invoice-form" />
-		<view-param name="search-filters"
-			value="customer-invoices-filters" />
-		<domain>self.operationTypeSelect = 1</domain>
-		<context name="_operationTypeSelect" expr="eval:1" />
-		<context name="todayDate" expr="eval:__config__.date" />
-	</action-view>
-	
-		<menuitem name="gst-root-invoice-validated"
-		parent="invoice-config" title="Validated Invoiced" action="action.gst.view.invoice.validated" order="-30"/>
-	<action-view name="action.gst.view.invoice.validated" title="Invoice"
-		model="com.axelor.apps.account.db.Invoice">
-		<view type="grid" name="invoice-grid" />
-		<view type="form" name="invoice-form" />
-		<view-param name="search-filters"
-			value="customer-invoices-filters" />
-		<domain>self.operationTypeSelect = 2</domain>
-		<context name="_operationTypeSelect" expr="eval:2" />
-		<context name="todayDate" expr="eval:__config__.date" />
-	</action-view>
-	
-
-	<menuitem name="gst-root-invoice-ventilated"
-		parent="invoice-config" title="Vantilated Invoiced"
-		action="action.gst.view.invoice.ventilated"  order="-20"/>
-	<action-view name="action.gst.view.invoice.ventilated" title="Invoice"
-		model="com.axelor.apps.account.db.Invoice">
-		<view type="grid" name="invoice-grid" />
-		<view type="form" name="invoice-form" />
-		<view-param name="search-filters"
-			value="customer-invoices-filters" />
-		<domain>self.operationTypeSelect = 3</domain>
-		<context name="_operationTypeSelect" expr="eval:3" />
-		<context name="todayDate" expr="eval:__config__.date" />
-	</action-view>
-	
-	<menuitem name="gst-root-invoice-cancelled"
-		parent="invoice-config" title="Cancel Invoiced"
-		action="action.gst.view.invoice.canceled"  order="-10"/>
-	<action-view name="action.gst.view.invoice.canceled" title="Invoice"
-		model="com.axelor.apps.account.db.Invoice">
-		<view type="grid" name="invoice-grid" />
-		<view type="form" name="invoice-form" />
-		<view-param name="search-filters"
-			value="customer-invoices-filters" />
-		<domain>self.operationTypeSelect = 4</domain>
-		<context name="_operationTypeSelect" expr="eval:4" />
-		<context name="todayDate" expr="eval:__config__.date" />
-	</action-view>
-	
-	<menuitem name="gst-root-invoice"
-		parent="invoice-config" title="All Invoices"
-		action="action.gst.view.invoice"  order="-9"/>
-	<action-view name="action.gst.view.invoice" title="Invoice"
-		model="com.axelor.apps.account.db.Invoice">
-		<view type="grid" name="invoice-grid" />
-		<view type="form" name="invoice-form" />
-		<view-param name="search-filters"
-			value="customer-invoices-filters" />
-		<context name="todayDate" expr="eval:__config__.date" />
-	</action-view>
+  <menuitem title="Invoice" name="invoice-config" order="-3" parent="gst-root"
+    icon="fa-desktop"/>
 
 
+  <menuitem name="gst-root-invoice-ventilated" parent="invoice-config" title=" Invoice"
+    action="action.gst.view.invoice.ventilated" order="-20"/>
+  <action-view name="action.gst.view.invoice.ventilated" title="Invoice"
+    model="com.axelor.apps.account.db.Invoice">
+    <view type="grid" name="invoice-grid"/>
+    <view type="form" name="invoice-form"/>
+    <view-param name="search-filters" value="customer-invoices-filters"/>
+    <domain>self.operationTypeSelect = 3</domain>
+    <context name="_operationTypeSelect" expr="eval:3"/>
+    <context name="todayDate" expr="eval:__config__.date"/>
+  </action-view>
 
+  <!--COmpany Menu -->
+  <menuitem name="gst-party-config" title="Company" parent="gst-root" icon="fa-book"
+    order="-2"/>
 
-	<!--COmpany Menu -->
-	<menuitem name="gst-party-config" title="Company"
-		parent="gst-root" icon="fa-book" order="-2" />
+  <menuitem name="gst-root-company" parent="gst-party-config" title="Company"
+    action="action.gst.view.company" order="-20"/>
+  <action-view name="action.gst.view.company" title="Company"
+    model="com.axelor.apps.base.db.Company">
+    <view type="grid" name="company-grid"/>
+    <view type="form" name="company-form"/>
+  </action-view>
 
-	<menuitem name="gst-root-company" parent="gst-party-config"
-		title="Company" action="action.gst.view.company" order="-20" />
-	<action-view name="action.gst.view.company" title="Company"
-		model="com.axelor.apps.base.db.Company">
-		<view type="grid" name="company-grid" />
-		<view type="form" name="company-form" />
-	</action-view>
+  <menuitem name="gst-root-bank" parent="gst-party-config" title="Bank"
+    action="action.gst.view.bank" order="-10"/>
+  <action-view name="action.gst.view.bank" title="Bank"
+    model="com.axelor.apps.base.db.Bank">
+    <view type="grid" name="bank-grid"/>
+    <view type="form" name="bank-form"/>
+  </action-view>
 
-	<menuitem name="gst-root-bank" parent="gst-party-config"
-		title="Bank" action="action.gst.view.bank" order="-10" />
-	<action-view name="action.gst.view.bank" title="Bank"
-		model="com.axelor.apps.base.db.Bank">
-		<view type="grid" name="bank-grid" />
-		<view type="form" name="bank-form" />
-	</action-view>
+  <!-- Dashboard -->
 
-	<!-- Dashboard -->
-
-	<menuitem title="Dashboard" name="dashboard-root" order="-2"
-		parent="gst-root" icon="fa-bar-chart" />
-	<menuitem name="dashboard-report" title="Invoices"
-		parent="dashboard-root" action="action.gst.root.dashboard" />
-	<action-view name="action.gst.root.dashboard"
-		title="DashBoard">
-		<view type="dashboard" name="gst.dashboard" />
-	</action-view>
+  <menuitem title="Dashboard" name="dashboard-root" order="-2" parent="gst-root"
+    icon="fa-bar-chart"/>
+  <menuitem name="dashboard-report" title="Invoices" parent="dashboard-root"
+    action="action.gst.root.dashboard"/>
+  <action-view name="action.gst.root.dashboard" title="DashBoard">
+    <view type="dashboard" name="gst.dashboard"/>
+  </action-view>
 
 
 </object-views>
