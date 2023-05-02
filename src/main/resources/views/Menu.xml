@@ -25,6 +25,7 @@
     action="action.gst.view.address" order="-20"/>
   <action-view name="action.gst.view.address" title="Address"
     model="com.axelor.apps.base.db.Address">
+    <view type="grid" name="address-grid"/>
     <view type="form" name="address-form"/>
   </action-view>
 

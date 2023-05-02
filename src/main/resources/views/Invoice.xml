@@ -28,7 +28,7 @@
     </extend>
 
     <extend target="//panel-related[@name='invoiceLineListPanel']">
-      <attribute name="onChange" value="action-group-invoice-onChange"/>
+      <attribute name="onChange" value="action-gst-report-print"/>
     </extend>
 
   </form>
@@ -40,5 +40,12 @@
   <action-group name="action-group-invoice-onChange">
     <action name="action-invoice-group-invoice-line-list-on-change"/>
   </action-group>
+
+  <action-method name="action-gst-report-print">
+    <call class="com.axelor.apps.gst.impl.invoiceGstPrintReportImpl"
+      method="prepareReportSettings"/>
+  </action-method>
+
+
 
 </object-views>

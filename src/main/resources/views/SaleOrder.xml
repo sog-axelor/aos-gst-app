@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/object-views http://axelor.com/xml/ns/object-views/object-views_5.4.xsd">
+
+  <form id="sale-order-gst-form" model="com.axelor.apps.sale.db.SaleOrder" title="Sale order"
+    name="sale-order-form" extension="true">
+    <extend target="//panel-related[@name='saleOrderLineTaxListPanel']">
+      <insert position="after">
+        <field name="netIgst" if="__config__.app.isApp('gst')" title="Net Igst"/>
+        <field name="netCgst" if="__config__.app.isApp('gst')" title="Net Cgst"/>
+        <field name="netSgst" if="__config__.app.isApp('gst')" title="Net Sgst"/>
+      </insert>
+    </extend>
+  </form>
+</object-views>

@@ -104,11 +104,9 @@ public class InvoiceGstImpl extends InvoiceServiceManagementImpl implements Invo
     invoice.setNetIgst(netIgst);
     invoice.setNetSgst(netSgst);
 
- 
-	invoice1.setTaxTotal(invoice1.getTaxTotal().add(netIgst).add(netCgst).add(netSgst));
+    invoice1.setTaxTotal(invoice1.getTaxTotal().add(netIgst).add(netCgst).add(netSgst));
     invoice1.setInTaxTotal(invoice1.getTaxTotal().add(invoice1.getExTaxTotal()));
 
-    
     return invoice1;
   }
 }

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  http://axelor.com/xml/ns/object-views/object-views_5.4.xsd">
+
+  <form name="sale-order-line-form" title="SO line"
+    model="com.axelor.apps.sale.db.SaleOrderLine" width="large" extension="true"
+    id="sale-order-line-gst-form">
+    <extend target="//field[@name='taxLine']">
+      <insert position="before">
+        <field name="hsbn" if="__config__.app.isApp('gst')" title="HSBN"/>
+        <field name="igst" readonly="true" if="__config__.app.isApp('gst')" title="Igst"/>
+        <field name="sgst" readonly="true" if="__config__.app.isApp('gst')" title="Sgst"/>
+        <field name="cgst" readonly="true" if="__config__.app.isApp('gst')" title="Cgst"/>
+        <field name="gstRate" readonly="true" if="__config__.app.isApp('gst')"
+          title="Gst Rate"/>
+      </insert>
+    </extend>
+  </form>
+
+
+  <action-record name="action-change-hsbn-sale"
+    model="com.axelor.apps.sale.db.SaleOrderLine">
+    <field name="hsbn" expr="eval: product.hsbn "/>
+    <field name="gstRate" expr="eval: product.gstRate"/>
+  </action-record>
+
+
+
+
+
+
+</object-views>
