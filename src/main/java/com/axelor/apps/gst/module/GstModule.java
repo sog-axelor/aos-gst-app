@@ -8,10 +8,12 @@ import com.axelor.apps.cash.management.service.InvoiceServiceManagementImpl;
 import com.axelor.apps.gst.impl.GstImplmentation;
 import com.axelor.apps.gst.impl.InvoiceGstImpl;
 import com.axelor.apps.gst.impl.InvoiceLineGstImpl;
-import com.axelor.apps.gst.impl.PurchaseLineOrderImpl;
+import com.axelor.apps.gst.impl.PurchaseLineOrderGstImpl;
+import com.axelor.apps.gst.impl.PurchaseOrderGstImpl;
 import com.axelor.apps.gst.impl.invoiceGstPrintReportImpl;
 import com.axelor.apps.gst.service.GstService;
 import com.axelor.apps.gst.service.InvoiceGstService;
+import com.axelor.apps.production.service.PurchaseOrderServiceProductionImpl;
 
 public class GstModule extends AxelorModule {
 
@@ -26,6 +28,8 @@ public class GstModule extends AxelorModule {
     bind(InvoicePrintServiceImpl.class).to(invoiceGstPrintReportImpl.class);
 
     // for Purchase
-    bind(PurchaseOrderLineServiceProjectImpl.class).to(PurchaseLineOrderImpl.class);
+    bind(PurchaseOrderLineServiceProjectImpl.class).to(PurchaseLineOrderGstImpl.class);
+
+    bind(PurchaseOrderServiceProductionImpl.class).to(PurchaseOrderGstImpl.class);
   }
 }

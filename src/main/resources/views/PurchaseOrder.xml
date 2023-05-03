@@ -13,6 +13,7 @@
         <field name="netSgst" if="__config__.app.isApp('gst')" title="Net Sgst"/>
       </insert>
     </extend>
+
   </form>
 
 </object-views>

@@ -40,14 +40,14 @@
   </action-record>
 
   <action-group name="action-group-purchase-order-line-product-onChange">
-    <action name="action-group-purchase-purchase-orderline-product-onchange"/>
     <action name="action-change-hsbn-purchase"/>
+    <action name="action-group-purchase-purchase-orderline-product-onchange"/>
   </action-group>
 
 
   <action-group name="action-group-purchase-order-line-product-qty-onChange">
-    <action name="action-group-purchase-purchase-orderline-qty-onchange"/>
     <action name="action-change-hsbn-purchase"/>
+    <action name="action-group-purchase-purchase-orderline-qty-onchange"/>
   </action-group>
 
   <action-group name="action-group-purchase-order-line-product-tax-onChange">

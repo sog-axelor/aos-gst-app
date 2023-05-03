@@ -12,5 +12,7 @@ dependencies {
 	api project(":modules:axelor-purchase")
 	api project(":modules:axelor-sale")
 	api project(":modules:axelor-stock")
+	api project(":modules:axelor-production")
+	
 }
 
