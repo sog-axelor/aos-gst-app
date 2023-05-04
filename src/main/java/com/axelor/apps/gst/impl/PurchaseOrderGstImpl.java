@@ -60,11 +60,20 @@ public class PurchaseOrderGstImpl extends PurchaseOrderServiceProductionImpl {
       purchaseOrder.setNetSgst(BigDecimal.ZERO);
     }
 
-    BigDecimal igst = purchaseOrder.getPurchaseOrderLineList().stream().map(PurchaseOrderLine::getIgst).reduce(BigDecimal.ZERO, BigDecimal::add);
-    BigDecimal cgst = purchaseOrder.getPurchaseOrderLineList().stream().map(PurchaseOrderLine::getCgst).reduce(BigDecimal.ZERO, BigDecimal::add);
-    BigDecimal sgst = purchaseOrder.getPurchaseOrderLineList().stream().map(PurchaseOrderLine::getSgst).reduce(BigDecimal.ZERO, BigDecimal::add);
-    purchaseOrder.setNetIgst(igst);
+    BigDecimal igst =
+        purchaseOrder.getPurchaseOrderLineList().stream()
+            .map(PurchaseOrderLine::getIgst)
+            .reduce(BigDecimal.ZERO, BigDecimal::add);
+    BigDecimal cgst =
+        purchaseOrder.getPurchaseOrderLineList().stream()
+            .map(PurchaseOrderLine::getCgst)
+            .reduce(BigDecimal.ZERO, BigDecimal::add);
+    BigDecimal sgst =
+        purchaseOrder.getPurchaseOrderLineList().stream()
+            .map(PurchaseOrderLine::getSgst)
+            .reduce(BigDecimal.ZERO, BigDecimal::add);
     purchaseOrder.setNetSgst(sgst);
+    purchaseOrder.setNetIgst(igst);
     purchaseOrder.setNetCgst(cgst);
     po.setTaxTotal(po.getTaxTotal().add(sgst).add(cgst).add(igst));
     po.setInTaxTotal(po.getInTaxTotal().add(sgst).add(cgst).add(igst));

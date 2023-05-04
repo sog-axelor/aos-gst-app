@@ -12,5 +12,14 @@
         <field name="netSgst" if="__config__.app.isApp('gst')" title="Net Sgst"/>
       </insert>
     </extend>
+    <extend target="//panel-related[@name='saleOrderLineTaxListPanel']">
+      <attribute name="onChange" value="action-gst-sale-order-report-print"/>
+    </extend>
   </form>
+
+  <action-method name="action-gst-sale-order-report-print">
+    <call class="com.axelor.apps.gst.impl.SaleOrderGstReportSettingimpl"
+      method="prepareReportSettings"/>
+  </action-method>
+
 </object-views>
