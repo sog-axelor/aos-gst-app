@@ -36,7 +36,6 @@ public class SaleOrderGstReportSettingimpl extends SaleOrderPrintServiceImpl {
             saleOrder);
       }
     }
-    
 
     String locale = ReportSettings.getPrintingLocale(saleOrder.getClientPartner());
 
