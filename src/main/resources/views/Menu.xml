@@ -109,5 +109,62 @@
     <view type="dashboard" name="gst.dashboard"/>
   </action-view>
 
+  <!-- For hide crm app -->
+  <menuitem id="gst-crm-root" name="crm-root" title="CRM" order="-108"
+    if="__config__.app.isApp('crm')" icon="fa-user" icon-background="#2fa042" hidden="true"/>
 
+  <!-- For hide account app -->
+  <menuitem name="account-root" title="Accounting" order="-90"
+    if="__config__.app.isApp('account')" icon="fa-calculator" icon-background="#2fa042"
+    id="gst-account-root" hidden="true"/>
+
+  <!-- For hide sales app -> mass cust Stock move -->
+  <menuitem name="stock-multi-sale-invoicing" parent="sc-root-sale" order="26"
+    if="__config__.app.isApp('supplychain')" title="Mass Cust. Stock Move Invoicing"
+    action="stock.root.multi.sale.invoicing" hidden="true" id="gst-stock-multi-sale-invoicing"/>
+
+  <!-- for hide sales abc-analysis -->
+  <menuitem name="sc-root-abc-analysis" title="ABC analysis" order="27"
+    action="sale.root.abc.analysis" parent="sc-root-sale" id="gst-sc-root-abc-analysis"
+    hidden="true"/>
+
+  <!-- for hide calendar -->
+  <menuitem id="gst-calendar.root.menu"
+    if="__config__.app.isApp('base') &amp;&amp; __config__.app.getApp('base')?.getEnableCalendars()"
+    name="menu-calendar" order="-110" title="Calendar" icon="fa-calendar" icon-background="#34d0f7"
+    hidden="true"/>
+
+  <!-- for document hide -->
+  <menuitem id="gst-abs-menu-dms" name="menu-dms"
+    if="__config__.app.isApp('base') &amp;&amp; __config__.app.getApp('base')?.getDocument()"
+    hidden="true" order="-109" title="Documents" icon="fa-archive" icon-background="#3f6bb9"/>
+
+  <!-- for Teamwork hide -->
+  <menuitem id="gst-abs-menu-team" name="menu-team"
+    if="__config__.app.isApp('base') &amp;&amp; __config__.app.getApp('base')?.getTeamManagement()"
+    hidden="true" order="-110" title="Teamwork" icon="fa-user" icon-background="blue"/>
+
+  <!-- for report-sales -->
+  <menuitem name="menu-saleman-dashboard-sample" parent="sc-root-sale-report" order="-205"
+    title="Salesperson" action="saleman.dashboard.view.sample"
+    id="gst-menu-saleman-dashboard-sample" hidden="true"/>
+  <!-- for report-sales -->
+  <menuitem name="menu-dashboards-customers" parent="sc-root-sale-report"
+    title="Customers / prospects" action="sale.customer.list.dashboard.view"
+    id="gst-menu-dashboards-customers" hidden="true"/>
+
+  <!-- for purchase = Mass Suppl. Stock Move Invoicing -->
+  <menuitem name="stock-multi-purchase-invoicing" parent="sc-root-purchase" order="26"
+    title="Mass Suppl. Stock Move Invoicing" action="stock.root.multi.purchase.invoicing"
+    id="gst-stock-multi-purchase-invoicing" hidden="true"/>
+
+  <!-- for purchase = Mass Suppl. Stock Move Invoicing -->
+  <menuitem name="purchase-root-abc-analysis" title="ABC analysis" order="27"
+    action="purchase.root.abc.analysis" parent="sc-root-purchase"
+    id="gst-purchase-root-abc-analysis" hidden="true"/>
+
+  <!-- for cash management -->
+  <menuitem name="forecast-root" title="Cash management" order="-86"
+    if="__config__.app.isApp('cash-management')" icon="fa-money" icon-background="#e0a83c"
+    id="gst-forecast-root" hidden="true"/>
 </object-views>

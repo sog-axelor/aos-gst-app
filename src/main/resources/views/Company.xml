@@ -16,7 +16,7 @@
 
   <form model="com.axelor.apps.base.db.Company" title="Company detail" name="company-form"
     id="gst-company-form" extension="true">
-    <extend target="//panel[@title='detailsPanel']/field[@name='partner']">
+    <extend target="//field[@name='partner']">
       <insert position="after">
         <field name="gstin"/>
       </insert>

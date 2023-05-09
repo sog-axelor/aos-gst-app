@@ -6,10 +6,10 @@
   <module name="account" package="com.axelor.apps.account.db"/>
   <entity name="InvoiceLine" lang="java" cacheable="true">
     <string name="hsbn" title="HSBN"/>
-    <decimal name="gstRate" precision="8" scale="2" title="Gst Rate"/>
-    <decimal name="igst" precision="8" scale="2" title="Igst"/>
-    <decimal name="sgst" precision="8" scale="2" title="Sgst"/>
-    <decimal name="cgst" precision="8" scale="2" title="Cgst"/>
+    <decimal name="gstRate" title="Gst Rate"/>
+    <decimal name="igst" title="Igst"/>
+    <decimal name="sgst" title="Sgst"/>
+    <decimal name="cgst" title="Cgst"/>
   </entity>
 
 </domain-models>

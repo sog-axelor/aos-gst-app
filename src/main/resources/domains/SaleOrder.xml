@@ -6,6 +6,7 @@
   <module name="sale" package="com.axelor.apps.sale.db"/>
   <entity name="SaleOrder" lang="java"
     implements="com.axelor.apps.base.interfaces.PricedOrder">
+    <string name="gstin" title="GSTIN" min="15" max="15"/>
     <decimal name="netIgst" precision="8" scale="2" readonly="true" title="Net Igst"/>
     <decimal name="netCgst" precision="8" scale="2" readonly="true" title="Net Cgst"/>
     <decimal name="netSgst" precision="8" scale="2" readonly="true" title="Net Sgst"/>

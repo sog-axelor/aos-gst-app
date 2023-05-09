@@ -15,6 +15,13 @@
     <extend target="//panel-related[@name='saleOrderLineTaxListPanel']">
       <attribute name="onChange" value="action-gst-sale-order-report-print"/>
     </extend>
+
+    <extend target="//field[@name='taxNumber']">
+      <replace>
+        <field name="gstin" title="Gst number"/>
+      </replace>
+    </extend>
+
   </form>
 
   <action-method name="action-gst-sale-order-report-print">

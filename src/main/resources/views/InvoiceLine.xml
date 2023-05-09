@@ -17,26 +17,6 @@
       </insert>
     </extend>
 
-    <extend target="//panel[@name='customerInvoicePanel']/field[@name='product']">
-      <attribute name="onChange" value="action-group-invoice-line-product-onChange"/>
-    </extend>
-
-    <extend target="//panel[@name='supplierInvoicePanel']/field[@name='product']">
-      <attribute name="onChange" value="action-group-invoice-line-product-onChange"/>
-    </extend>
-
-    <extend target="//panel[@name='informationsPanel']/field[@name='qty']">
-      <attribute name="onChange" value="action-group-invoice-line-product-qty-onChange"/>
-    </extend>
-
-    <extend target="//panel[@name='informationsPanel']/field[@name='taxLine']">
-      <attribute name="onChange"
-        value="action-group-invoice-line-product-taxLine-onChange"/>
-    </extend>
-
-
-
-
   </form>
 
   <action-record name="action-change-hsbn"
@@ -44,36 +24,6 @@
     <field name="hsbn" expr="eval: product.hsbn "/>
     <field name="gstRate" expr="eval: product.gstRate"/>
   </action-record>
-
-  <action-method name="action-gst-invoice-line-method">
-    <call class="com.axelor.apps.gst.controller.GstController" method="invoiceLineGst"/>
-  </action-method>
-
-
-
-
-
-  <action-group name="action-group-invoice-line-product-onChange">
-    <action name="action-group-account-invoice-line-product-onchange"/>
-    <action name="action-change-hsbn"/>
-  </action-group>
-
-
-  <action-group name="action-group-invoice-line-product-qty-onChange">
-    <action name="action-group-account-invoice-line-qty-onchange"/>
-  </action-group>
-
-
-
-  <action-group name="action-group-invoice-line-product-taxLine-onChange">
-    <action
-      name="action-invoice-line-method-convert-tax,action-invoice-line-method-compute,action-invoice-line-method-compute-analytic-distribution,action-budget-validate-exceed-line-amount"/>
-    <action name="action-change-hsbn"/>
-  </action-group>
-
-
-
-
 </object-views>
 
 
