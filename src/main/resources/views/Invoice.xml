@@ -26,8 +26,31 @@
         <field name="netSgst" if="__config__.app.isApp('gst')"/>
       </insert>
     </extend>
+
+    <extend target="//field[@name='partnerTaxNbr']">
+      <replace>
+        <field name="gstin" title="Gst number"/>
+      </replace>
+    </extend>
+     <extend target="//field[@name='partner']">
+      <attribute name="onChange"
+        value="action-group-gst-invoice-partner-onchange"/>
+    </extend>
+
   </form>
 
+   
 
+
+
+  <action-record name="action-gst-invoice-record-gstin"
+    model="com.axelor.apps.account.db.Invoice">
+    <field name="gstin" expr="eval: partner?.gstIn"/>
+  </action-record>
+  
+  <action-group name="action-group-gst-invoice-partner-onchange">
+    <action name="action-group-cash-management-invoice-partner-onchange"/>
+    <action name="action-gst-invoice-record-gstin"/>
+  </action-group>
 
 </object-views>

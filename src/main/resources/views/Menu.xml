@@ -167,4 +167,28 @@
   <menuitem name="forecast-root" title="Cash management" order="-86"
     if="__config__.app.isApp('cash-management')" icon="fa-money" icon-background="#e0a83c"
     id="gst-forecast-root" hidden="true"/>
+
+  <menuitem name="stock-root-abc-analysis" title="ABC analysis" order="27"
+    action="stock.root.abc.analysis" parent="stock-root" id="gst-stock-root-abc-analysis"
+    hidden="true"/>
+
+  <menuitem title="Logistical forms" name="stock-root-logistical-forms" parent="stock-root"
+    action="stock.root.logistical.forms" order="39" id="gst-stock-root-logistical-forms"
+    hidden="true"/>
+
+  <menuitem id="gst-stock-root-stock-location-tree" name="stock-root-stock-location-tree"
+    parent="stock-root" title="Stock Location Tree" action="stock.root.stock.location.tree"
+    order="42" hidden="true"/>
+
+  <menuitem name="stock-mrp" parent="stock-root" title="MRP"
+    if="__config__.app.isApp('supplychain')" order="40" id="gst-stock-mrp" hidden="true"/>
+    
+      <menuitem name="invoice-root-invoice-terms" parent="invoice-root" order="21"
+    title="Terms list" action="invoice.root.invoice.terms" hidden="true" id="gst-invoice-root-invoice-terms"/>
+    
+     <menuitem name="invoice-root-subscription-invoice" parent="invoice-root"
+    title="Subscription invoices to validate" action="invoice.root.subscription.invoice" order="22" hidden="true" id="gst-invoice-root-subscription-invoice"/>
+
+	<menuitem name="menu-account-invoice-advanced" parent="invoice-root-report"
+    title="Advanced" hidden="true" id="gst-menu-account-invoice-advanced"/>
 </object-views>

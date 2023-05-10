@@ -77,6 +77,8 @@ public class InvoiceGstImpl extends InvoiceServiceManagementImpl implements Invo
 
     Invoice invoice1 = super.compute(invoice);
 
+  
+
     BigDecimal netIgst = BigDecimal.ZERO;
     BigDecimal netCgst = BigDecimal.ZERO;
     BigDecimal netSgst = BigDecimal.ZERO;
@@ -85,27 +87,27 @@ public class InvoiceGstImpl extends InvoiceServiceManagementImpl implements Invo
       invoice.setNetCgst(BigDecimal.ZERO);
       invoice.setNetIgst(BigDecimal.ZERO);
       invoice.setNetSgst(BigDecimal.ZERO);
+    } else {
+      netIgst =
+          invoice.getInvoiceLineList().stream()
+              .map(InvoiceLine::getIgst)
+              .reduce(BigDecimal.ZERO, BigDecimal::add);
+      netCgst =
+          invoice.getInvoiceLineList().stream()
+              .map(InvoiceLine::getCgst)
+              .reduce(BigDecimal.ZERO, BigDecimal::add);
+      netSgst =
+          invoice.getInvoiceLineList().stream()
+              .map(InvoiceLine::getSgst)
+              .reduce(BigDecimal.ZERO, BigDecimal::add);
+
+      invoice.setNetCgst(netCgst);
+      invoice.setNetIgst(netIgst);
+      invoice.setNetSgst(netSgst);
+
+      invoice1.setTaxTotal(invoice1.getTaxTotal().add(netIgst).add(netCgst).add(netSgst));
+      invoice1.setInTaxTotal(invoice1.getTaxTotal().add(invoice1.getExTaxTotal()));
     }
-
-    netIgst =
-        invoice.getInvoiceLineList().stream()
-            .map(InvoiceLine::getIgst)
-            .reduce(BigDecimal.ZERO, BigDecimal::add);
-    netCgst =
-        invoice.getInvoiceLineList().stream()
-            .map(InvoiceLine::getCgst)
-            .reduce(BigDecimal.ZERO, BigDecimal::add);
-    netSgst =
-        invoice.getInvoiceLineList().stream()
-            .map(InvoiceLine::getSgst)
-            .reduce(BigDecimal.ZERO, BigDecimal::add);
-
-    invoice.setNetCgst(netCgst);
-    invoice.setNetIgst(netIgst);
-    invoice.setNetSgst(netSgst);
-
-    invoice1.setTaxTotal(invoice1.getTaxTotal().add(netIgst).add(netCgst).add(netSgst));
-    invoice1.setInTaxTotal(invoice1.getTaxTotal().add(invoice1.getExTaxTotal()));
 
     return invoice1;
   }

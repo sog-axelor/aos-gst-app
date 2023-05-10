@@ -20,11 +20,11 @@ public class SaleOrderGstImpl extends SaleOrderComputeServiceSupplychainImpl {
   @Override
   public SaleOrder computeSaleOrder(SaleOrder saleOrder) throws AxelorException {
     SaleOrder cso = super.computeSaleOrder(saleOrder);
-    
-    if(saleOrder.getClientPartner().getGstIn()==null) {
-    	cso.setGstin("");
-    }else {
-    	cso.setGstin(saleOrder.getClientPartner().getGstIn());
+
+    if (saleOrder.getClientPartner().getGstIn() == null) {
+      cso.setGstin("");
+    } else {
+      cso.setGstin(saleOrder.getClientPartner().getGstIn());
     }
 
     if (saleOrder.getSaleOrderLineList() == null) {
